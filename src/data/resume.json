@@ -1,0 +1,147 @@
+{
+  "name": "Krishna Kanchibhatta",
+  "title": "Software Engineer",
+  "location": "Stockholm, Sweden",
+  "tagline": "Senior engineer who builds and solves problems with AI. Claude's my sidekick—finally someone who doesn't judge my variable names or steal my snacks.",
+  "email": "krishnakb@live.com",
+  "linkedin": "https://linkedin.com/in/krishnakanchibhatta",
+  "github": "https://github.com/krishnakb",
+  "experience": [
+    {
+      "title": "Senior Engineer",
+      "company": "Spotify",
+      "location": "Stockholm, Sweden",
+      "startDate": "Jan 2022",
+      "endDate": "Present",
+      "description": "Building scalable systems for the world's largest audio streaming platform.",
+      "tech": ["Java", "Microservices", "GCP", "Kubernetes"],
+      "highlights": [
+        "Media transcoding and orchestration systems",
+        "Large-scale distributed systems"
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Spotify",
+      "location": "Stockholm, Sweden",
+      "startDate": "Feb 2021",
+      "endDate": "Dec 2021",
+      "description": "Building scalable systems for the world's largest audio streaming platform.",
+      "tech": ["Java", "Microservices", "GCP", "Kubernetes"],
+      "highlights": [
+        "Media transcoding and orchestration systems",
+        "Large-scale distributed systems"
+      ]
+    },
+    {
+      "title": "Senior Software Consultant",
+      "company": "Polarcape Consulting",
+      "client": "Telenor",
+      "location": "Stockholm, Sweden",
+      "startDate": "Oct 2018",
+      "endDate": "Jan 2021",
+      "description": "Built Voyager - a microservices framework for telecommunications.",
+      "tech": ["Java", "Spring Boot", "Microservices", "Docker"],
+      "highlights": [
+        "Designed and built Voyager microservices framework",
+        "Enabled rapid service development across teams"
+      ],
+      "award": "Flexibility Performance Award"
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Careworks Tech",
+      "client": "NetJets Inc.",
+      "location": "Columbus, Ohio",
+      "startDate": "Nov 2017",
+      "endDate": "Sep 2018",
+      "description": "Built and maintained international trip planning systems for private aviation.",
+      "tech": ["Java", "REST APIs", "Aviation Systems"],
+      "highlights": [
+        "Built international trip planning features",
+        "Integrated with aviation regulatory systems"
+      ]
+    },
+    {
+      "title": "Software Developer",
+      "company": "Careworks Tech",
+      "client": "Nationwide Insurance",
+      "location": "Columbus, Ohio",
+      "startDate": "May 2016",
+      "endDate": "Nov 2017",
+      "description": "Developed property and auto insurance sales applications.",
+      "tech": ["Java", "Spring", "Insurance Domain"],
+      "highlights": [
+        "Developed insurance sales applications",
+        "Property and auto insurance platforms"
+      ]
+    },
+    {
+      "title": "Graduate Assistant",
+      "company": "The University of Akron",
+      "location": "Ohio, USA",
+      "startDate": "Dec 2014",
+      "endDate": "Apr 2016",
+      "description": "Managed the computer lab and helped undergraduates with programming assignments.",
+      "tech": [],
+      "highlights": [],
+      "award": "Full Tuition Waiver"
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Tech Mahindra",
+      "client": "British Telecom",
+      "location": "Pune, India & Ipswich, UK",
+      "startDate": "Feb 2011",
+      "endDate": "Jul 2014",
+      "description": "Delivered and maintained telecom solutions for British Telecom.",
+      "tech": ["Java"],
+      "highlights": [],
+      "award": "Multiple Performance Recognitions"
+    },
+    {
+      "title": "Resolution Expert",
+      "company": "Dell",
+      "location": "Hyderabad, India",
+      "startDate": "Jun 2010",
+      "endDate": "Jan 2011",
+      "description": "Provided technical support and resolution.",
+      "tech": [],
+      "highlights": [],
+      "award": "Best Trainee Award"
+    }
+  ],
+  "skills": [
+    "Java", "Python", "SQL",
+    "Microservices", "GCP", "CI/CD",
+    "Claude/ChatGPT", "Tableau", "Data Analysis",
+    "Media Processing", "FFmpeg", "Audio/Video Transcoding", "Image Processing"
+  ],
+  "education": [
+    {
+      "institution": "The University of Akron",
+      "degree": "Master's Degree",
+      "location": "Ohio, USA",
+      "startDate": "2014",
+      "endDate": "2016"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Advanced Java Programming",
+      "issuer": "LinkedIn Learning",
+      "date": "Mar 2021"
+    },
+    {
+      "name": "Systems Expert",
+      "issuer": "AlgoExpert",
+      "credential": "1666d35e35"
+    }
+  ],
+  "languages": [
+    { "name": "English", "level": "Fluent" },
+    { "name": "Telugu", "level": "Native" },
+    { "name": "Hindi", "level": "Fluent" },
+    { "name": "Swedish", "level": "Learning" }
+  ]
+}

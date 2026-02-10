@@ -1,0 +1,90 @@
+---
+import resume from '../data/resume.json';
+---
+
+<section id="certifications">
+  <div class="container">
+    <h2 class="section-header">certifications</h2>
+
+    <div class="certs-grid">
+      {resume.certifications.map((cert, index) => (
+        <div class="cert-card card" style={`--delay: ${0.1 + index * 0.1}s`}>
+          <div class="cert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"></circle>
+              <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path>
+            </svg>
+          </div>
+          <div class="cert-info">
+            <h3 class="cert-name">{cert.name}</h3>
+            <p class="cert-issuer">{cert.issuer}</p>
+            {cert.date && <span class="cert-date">{cert.date}</span>}
+            {cert.credential && (
+              <span class="cert-credential">ID: {cert.credential}</span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .cert-card {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease var(--delay), transform 0.5s ease var(--delay);
+  }
+
+  section.visible .cert-card {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .cert-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--yellow);
+  }
+
+  .cert-info {
+    flex: 1;
+  }
+
+  .cert-name {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 4px;
+  }
+
+  .cert-issuer {
+    font-size: 0.9rem;
+    color: var(--teal);
+    margin-bottom: 4px;
+  }
+
+  .cert-date,
+  .cert-credential {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+</style>

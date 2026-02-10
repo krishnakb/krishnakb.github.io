@@ -1,0 +1,173 @@
+---
+import resume from '../data/resume.json';
+---
+
+<section id="hero" class="visible">
+  <div class="container">
+    <div class="terminal hero-terminal">
+      <div class="terminal-header">
+        <div class="terminal-dot red"></div>
+        <div class="terminal-dot yellow"></div>
+        <div class="terminal-dot green"></div>
+        <span class="terminal-title">krishna@portfolio ~ </span>
+      </div>
+      <div class="terminal-body">
+        <div class="hero-content">
+          <p class="line">
+            <span class="prompt">whoami</span>
+          </p>
+          <h1 class="name typewriter" data-text={resume.name}></h1>
+
+          <p class="line">
+            <span class="prompt">cat role.txt</span>
+          </p>
+          <p class="role">
+            <span class="keyword">const</span> <span class="variable">role</span> = <span class="string">"{resume.title}"</span>;
+          </p>
+          <p class="role">
+            <span class="keyword">const</span> <span class="variable">location</span> = <span class="string">"{resume.location}"</span>;
+          </p>
+
+          <div class="tagline">
+            <span class="comment">/* {resume.tagline} */</span>
+          </div>
+
+          <nav class="nav-commands">
+            <p class="line"><span class="prompt">ls ./sections</span></p>
+            <div class="nav-links">
+              <a href="#experience" class="nav-link">experience/</a>
+              <a href="#skills" class="nav-link">skills/</a>
+              <a href="#education" class="nav-link">education/</a>
+              <a href="#certifications" class="nav-link">certifications/</a>
+              <a href="#contact" class="nav-link">contact/</a>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+  }
+
+  .hero-terminal {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .terminal-body {
+    padding: 32px;
+  }
+
+  .line {
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+  }
+
+  .name {
+    font-family: var(--font-mono);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-bright);
+    margin: 8px 0 24px;
+    min-height: 3rem;
+  }
+
+  .role {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .keyword { color: var(--purple); }
+  .variable { color: var(--blue); }
+  .string { color: var(--orange); }
+  .comment { color: var(--green); font-style: italic; }
+
+  .tagline {
+    margin: 24px 0 32px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .nav-commands {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 12px;
+  }
+
+  .nav-link {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--teal);
+    padding: 8px 16px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+
+  .nav-link:hover {
+    background: var(--teal);
+    color: var(--bg);
+    border-color: var(--teal);
+  }
+
+  @media (max-width: 600px) {
+    .name {
+      font-size: 1.75rem;
+    }
+
+    .terminal-body {
+      padding: 20px;
+    }
+
+    .nav-links {
+      gap: 8px;
+    }
+
+    .nav-link {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+    }
+  }
+</style>
+
+<script>
+  // Typewriter effect
+  const typewriter = document.querySelector('.typewriter') as HTMLElement;
+  if (typewriter) {
+    const text = typewriter.dataset.text || '';
+    let i = 0;
+
+    function type() {
+      if (i < text.length) {
+        typewriter.textContent = text.slice(0, i + 1);
+        i++;
+        setTimeout(type, 80);
+      } else {
+        // Add cursor after typing
+        const cursor = document.createElement('span');
+        cursor.className = 'cursor';
+        typewriter.appendChild(cursor);
+      }
+    }
+
+    // Start after a short delay
+    setTimeout(type, 500);
+  }
+</script>

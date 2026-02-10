@@ -1,0 +1,294 @@
+---
+import resume from '../data/resume.json';
+
+interface ExperienceEntry {
+  title: string;
+  company: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  description: string;
+  tech: string[];
+  highlights: string[];
+  client?: string;
+  award?: string;
+}
+
+interface CompanyGroup {
+  company: string;
+  client?: string;
+  location: string;
+  award?: string;
+  roles: ExperienceEntry[];
+}
+
+// Group experiences by company + client
+const grouped = (resume.experience as ExperienceEntry[]).reduce((acc, job) => {
+  const key = job.client ? `${job.company}::${job.client}` : job.company;
+  if (!acc[key]) {
+    acc[key] = {
+      company: job.company,
+      client: job.client,
+      location: job.location,
+      award: job.award,
+      roles: []
+    };
+  }
+  if (job.award && !acc[key].award) {
+    acc[key].award = job.award;
+  }
+  acc[key].roles.push(job);
+  return acc;
+}, {} as Record<string, CompanyGroup>);
+
+const companies = Object.values(grouped);
+---
+
+<section id="experience">
+  <div class="container">
+    <h2 class="section-header">experience</h2>
+
+    <div class="timeline">
+      {companies.map((company, index) => (
+        <div class="timeline-item" style={`--delay: ${0.1 + index * 0.1}s`}>
+          <div class="timeline-marker"></div>
+          <div class="timeline-content expandable card" data-index={index}>
+            <div class="company-header">
+              <span class="company-name">
+                {company.client ? <>{company.client}<span class="client-arrow"> ← {company.company}</span></> : company.company}
+              </span>
+              <span class="company-location">{company.location}</span>
+            </div>
+
+            <div class="roles">
+              {company.roles.map((role) => (
+                <div class="role">
+                  <div class="role-header">
+                    <h3 class="role-title">{role.title}</h3>
+                    <span class="role-date">{role.startDate} - {role.endDate}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {company.award && (
+              <div class="award-badge">★ {company.award}</div>
+            )}
+
+            <div class="job-details">
+              <p class="job-description">{company.roles[0].description}</p>
+
+              {company.roles[0].tech?.length > 0 && (
+                <div class="tech-tags">
+                  {company.roles[0].tech.map((tech) => (
+                    <span class="tech-tag">{tech}</span>
+                  ))}
+                </div>
+              )}
+
+              {company.roles[0].highlights?.length > 0 && (
+                <ul class="job-highlights">
+                  {company.roles[0].highlights.map((highlight) => (
+                    <li>{highlight}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+
+            <span class="expand-hint">click to {'{expand}'}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: opacity 0.5s ease var(--delay), transform 0.5s ease var(--delay);
+  }
+
+  section.visible .timeline-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -32px;
+    top: 28px;
+    width: 16px;
+    height: 16px;
+    background: var(--bg);
+    border: 3px solid var(--teal);
+    border-radius: 50%;
+    z-index: 1;
+  }
+
+  .timeline-item:first-child .timeline-marker {
+    background: var(--teal);
+  }
+
+  .timeline-content {
+    cursor: pointer;
+  }
+
+  .company-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .company-name {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--teal);
+  }
+
+  .client-arrow {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .company-location {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .roles {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .role-title {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-bright);
+  }
+
+  .role-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .award-badge {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--yellow, #e5c07b);
+    background: rgba(229, 192, 123, 0.1);
+    border: 1px solid var(--yellow, #e5c07b);
+    border-radius: 4px;
+  }
+
+  .job-details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin-top 0.4s ease;
+  }
+
+  .expandable.expanded .job-details {
+    max-height: 500px;
+    margin-top: 16px;
+  }
+
+  .job-description {
+    font-size: 0.95rem;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .job-highlights {
+    list-style: none;
+    margin-top: 12px;
+  }
+
+  .job-highlights li {
+    position: relative;
+    padding-left: 20px;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .job-highlights li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-family: var(--font-mono);
+  }
+
+  .expand-hint {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--muted);
+    transition: opacity 0.3s;
+  }
+
+  .expandable.expanded .expand-hint {
+    opacity: 0;
+  }
+
+  @media (max-width: 600px) {
+    .timeline {
+      padding-left: 24px;
+    }
+
+    .timeline-marker {
+      left: -24px;
+      width: 12px;
+      height: 12px;
+    }
+
+    .company-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .role-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

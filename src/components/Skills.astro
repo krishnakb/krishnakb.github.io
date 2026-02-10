@@ -1,0 +1,50 @@
+---
+import resume from '../data/resume.json';
+
+const skills = resume.skills;
+---
+
+<section id="skills">
+  <div class="container">
+    <h2 class="section-header">skills</h2>
+
+    <div class="skills-cloud">
+      {skills.map((skill, index) => (
+        <span class="skill-tag" style={`--delay: ${0.05 + index * 0.05}s`}>{skill}</span>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .skill-tag {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: default;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease var(--delay), transform 0.3s ease var(--delay), border-color 0.2s ease, color 0.2s ease;
+  }
+
+  section.visible .skill-tag {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .skill-tag:hover {
+    border-color: var(--teal);
+    color: var(--teal);
+  }
+</style>
